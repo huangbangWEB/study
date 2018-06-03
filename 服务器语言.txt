@@ -1,0 +1,280 @@
+df -h	查看硬盘
+
+adduser hb	添加用户
+
+gpasswd -a hb sudo	添加hb用户到sudo群组
+
+sudo visudo
+
+sudo vi /etc/ssh/sshd_config	进入配置文件
+
+配置文件设置(提高安全性)
+1.关闭root登陆	PermitRootLogin no
+2.关闭密码登陆	PasswordAuthentication no
+
+连续按两次shift+！ 切换至 :	然后输入wq!  → :wq!	保存配置文件
+
+sudo service ssh restart	重启服务
+
+/***********************************************************************/
+
+给sudo清空规则
+sudo iptables -F
+
+创建并进入规则文件
+sudo vi /etc/iptables.up.rules
+
+配置防火墙规则文件
+*filter
+
+允许建立的所有连接
+-A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
+
+允许出去的所有流量
+-A OUTPUT -j ACCEPT
+
+允许所有的http协议和https协议（443）的请求
+-A INPUT -p tcp --dport 443 -j ACCEPT
+
+允许所有的80端口的请求
+-A INPUT -p tcp --dport 80 -j ACCEPT
+
+为SSH登陆方式建立通道(只能通过39999端口进行登陆，其他端口拦截)
+-A INPUT -p tcp -m state --state NEW --dport 39999 -j ACCEPT
+
+# PING
+-A INPUT -p icmp -m icmp --icmp-type 8 -j ACCEPT
+
+# mongodb connect
+-A INPUT -s 127.0.0.1 -p tcp --destination-port 27080 -m state --state NEW,ESTABLISHED -j ACCEPT
+-A OUTPUT -d 127.0.0.1 -p tcp --source-port 27080 -m state --state ESTABLISHED -j ACCEPT
+
+记录拒绝的请求
+-A INPUT -m limit --limit 5/min -j LOG --log-prefix "iptables denied:" --log-level 7
+
+拒绝一些敏感可疑的访问(如果在60秒内访问超过150次就拦截访问)
+-A INPUT -p tcp --dport 80 -i eth0 -m state --state NEW -m recent --set
+-A INPUT -p tcp --dport 80 -i eth0 -m state --state NEW -m recent --uqdate --seconds 60 --hitcount 150 -j DROP
+
+拒绝其他所有进入服务器的流量
+-A INPUT -j REJECT	
+-A FORWARD -j REJECT
+
+COMMIT
+
+:wq!回车提交防火墙配置
+
+重启防火墙
+sudo iptables-restore < /etc/iptables.up.rules
+
+查看防火墙是否激活
+sudo ufw status
+
+激活防火墙
+sudo ufw enable
+
+设置开机后防火墙自动启动
+1.进入脚本设置
+sudo vi /etc/network/if-up.d/iptables
+2.设置脚本
+#!/bin/sh
+iptables-restore /etc/iptables.up.rules
+
+:wq!保存
+
+赋予脚本执行权限
+sudo chmod +x /etc/network/if-up.d/iptables
+
+防御性的动作库（检测可疑的目标进行IP锁定）
+
+1.安装（如果报错：unable to locate package fail2ban	就需要执行以下命令：sudo apt-get update）
+sudo apt-get install fail2ban
+
+2.进入配置文件
+sudo vi /etc/fail2ban/jail.conf
+
+3.修改配置文件
+bantime = 3600
+destemail = a851571078@qq.com
+action = %(action_mw)s
+
+4.查看是否已运行
+sudo service fail2ban status
+
+5.开启和关闭
+sudo service fail2ban stop
+sudo service fail2ban start
+
+/***********************************************************************/
+搭建nodejs生产环境
+
+sudo apt-get install vim openssl build-essential libssl-dev wget curl git
+
+从github中获取nvm
+https://github.com/creationix/nvm
+得到安装链接
+wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash
+如果安装失败则尝试
+1.git clone https://github.com/creationix/nvm.git ~/.nvm && cd ~/.nvm && git checkout `git describe --abbrev=0 --tags`
+2.接下来，我们需要编辑我们的环境变量配置文件 cd
+3.vim .bashrc 
+4.将source ~/.nvm/nvm.sh 添加进我们的.bashrc中，保存退出。
+5.输入命令source .bashrc
+6.nvm -v#查看nvm版本
+安装node版本
+nvm install 6.9.5
+默认系统版本号
+nvm alias default v6.9.5
+指定淘宝下载镜像源（提高下载速度）
+npm --registry=https://registry.npm.taobao.org install -g npm
+npm --registry=https://registry.npm.taobao.org install -g cnpm
+
+添加系统文件XXX(尚不知道具体用途)
+echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
+
+安装全局工作包
+npm i pm2 webpack gulp grunt-cli
+
+创建app.js文件
+vi appjs
+
+运行node程序
+node app.js
+
+ctrl + z 停止程序至后台 接着按bg则表示在后台运行程序
+
+fg 后台程序转至前台
+
+/***********************************************************************/
+1.安装全局pm2工作包
+npm install -g pm2
+2.使用pm2挂起程序至后台并显示cpu等信息
+pm2 start app.js
+3.列出当前服务器的程序
+pm2 list
+4.更详细的信息展示
+pm2 show app
+
+关闭服务
+pm2 stop server
+查看日志内容
+pm2 logs
+重启服务
+pm2 restart server
+
+/***********************************************************************/
+阿里云服务器默认内置apache服务，会占用80端口，需要删除
+1.暂停apache服务
+sudo service apache2
+2.删除apache
+update-rc.d -f apache2 remove
+3.移除apache
+sudo apt-get remove apache2
+
+更新包列表
+sudo apt-get update
+
+安装nginx代理
+sudo apt-get install nginx
+
+进入nginx目录
+cd /etc/nginx/
+
+在/etc/nginx/conf.d目录中创建配置文件
+sudo vi conf.d/hb4-top-8888.conf
+
+upstream hb4 {
+	server 127.0.0.1:8888
+}
+
+server {
+	listen 80;
+	server_name 119.23.227.35;
+ 
+	location / {
+		proxy_set_header X-Real-IP $remote_addr;
+		proxy_set_header X-Forward-For $proxy_add_x_forwarded_for;
+		proxy_set_header Host $http_host;
+		proxy_set_header X-Nginx-Proxy true;
+		proxy_pass http://hb4;
+		proxy_redirect off;
+	}
+}
+
+:wq!保存退出
+
+进入nginx的配置文件
+sudo vi nginx.conf
+
+:wq!保存退出
+
+检查配置文件是否有错误
+sudo nginx -t
+
+nginx服务重启
+sudo nginx -s reload
+
+默认返回的头部信息中会包含ubuntu的版本信息，我们可以把他隐藏掉
+1.进入主配置文件
+sudo vi nginx.conf
+2.讲注释
+#server_tokens off
+的#去掉变成一条命令行
+server_tokens off
+
+/***********************************************************************/
+在ubuntu中安装mongoDB
+
+安装步骤链接
+https://docs.mongodb.com/tutorials/install-mongodb-on-ubuntu/
+如果在安装过程中出现“安装失败找不到包”时可能是下载源的问题
+sudo vi /etc/apt/apt.conf
+将里面的命令行注释掉（不使用阿里源进行下载）
+
+查看下载的mongodb源
+cd /etc/apt/source.list.d
+ls 
+
+开启mongdb服务
+先返回根目录
+cd ..
+sudo service mongodb start
+检查是否已开启mongdb服务
+cat /var/log/mongodb/mongod.log
+
+设置防火墙
+
+终止mongo服务
+sudo service mongod stop
+
+重启mongo服务
+sudo service mongod restart
+
+mongo端口为27017全世界都知道
+进行端口更改以提高安全性
+sudo vi /etc/mongod.conf
+修改端口
+port: 29999
+需要密码登陆
+#processManagement
+security:
+	authorization:'enabled'
+
+mongo指定端口
+mongo --port 29999
+
+
+
+//////////////////////////////////////////////////////////////
+全开发模式
+///////////////////////////////////////////////////////////////
+ben
+本地和线上安装yarn
+百度官网直接下载安装
+如果安装失败就使用npm进行安装
+
+yarn指向国内的下载源
+yarn config set registry http://registry.npm.taobao.org
+
+安装工具
+npm install vue-cli pm2 -g

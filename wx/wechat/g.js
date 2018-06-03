@@ -3,11 +3,15 @@
 var sha1 = require('sha1')
 var Wechat = require('./wechat')
 var getRawBody = require('raw-body')
+var util = require('./util')
+var weixin = require('../weixin')
 
 
-module.exports = function (opts) {
+module.exports = function (opts,handler) {
+    //access_token值的更新和保持
     var wechat = new Wechat(opts)
     return function* (next) {
+        var that = this
         var token = opts.token
         var timestamp = this.query.timestamp
         var nonce = this.query.nonce
@@ -16,28 +20,38 @@ module.exports = function (opts) {
         var str = [token,timestamp,nonce].sort().join('')
         var sha = sha1(str)
         //验证是否是微信发过来的验证请求
-        if(this.method == 'GET'){
+        if(that.method == 'GET'){
             if (sha === signature){
-                this.body = echostr + ''
+                that.body = echostr + ''
             }else{
-                this.body = 'wrong'
+                that.body = 'wrong'
             }
-        }else if(this.method === 'POST'){
+        }else if(this.method == 'POST'){
             if(sha !== signature){
-                this.body = 'wrong'
+                that.body = 'wrong'
                 return false
             }
-            var data = yield  getRawBody(this.req,{
+            // 将获取的request对象转换成XML格式
+            var data = yield getRawBody(this.req,{
                 length:this.length,
                 limit:'1mb',
                 encoding:this.charset
             })
-            console.log(data.toString())
+            var content = yield util.parseXMLAsync(data)
+            var message = util.formatMessage(content.xml)
+            that.weixin = message
+            console.log(message)
+
+            yield handler.call(that,next)
+
+            wechat.reply.call(that)
+
+            return
         }
         if (sha === signature){
-            this.body = echostr + ''
+            that.body = echostr + ''
         }else{
-            this.body = 'wrong'
+            that.body = 'wrong'
         }
     }
 }
