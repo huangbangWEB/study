@@ -26,7 +26,7 @@
       <file leaf-file-name="wechat.txt" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/config/wechat.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="44">
+            <state relative-caret-position="22">
               <caret column="160" lean-forward="true" selection-start-column="160" selection-end-column="160" />
             </state>
           </provider>
@@ -62,8 +62,8 @@
       <file leaf-file-name="weixin.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/weixin.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="352">
-              <caret line="22" column="33" lean-forward="true" selection-start-line="22" selection-start-column="33" selection-end-line="22" selection-end-column="33" />
+            <state relative-caret-position="264">
+              <caret line="39" column="29" lean-forward="true" selection-start-line="39" selection-start-column="29" selection-end-line="39" selection-end-column="29" />
             </state>
           </provider>
         </entry>
@@ -71,8 +71,8 @@
       <file leaf-file-name="wechat.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/wechat/wechat.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="156">
-              <caret line="68" column="32" lean-forward="true" selection-start-line="68" selection-start-column="32" selection-end-line="68" selection-end-column="32" />
+            <state relative-caret-position="288">
+              <caret line="74" column="21" lean-forward="true" selection-start-line="74" selection-start-column="21" selection-end-line="74" selection-end-column="21" />
             </state>
           </provider>
         </entry>
@@ -113,10 +113,10 @@
         <option value="$PROJECT_DIR$/wechat/util.js" />
         <option value="$PROJECT_DIR$/app.js" />
         <option value="$PROJECT_DIR$/config/wechat.txt" />
-        <option value="$PROJECT_DIR$/wechat/wechat.js" />
         <option value="$PROJECT_DIR$/weixin.js" />
         <option value="$PROJECT_DIR$/wechat/tpl.js" />
         <option value="$PROJECT_DIR$/wechat/g.js" />
+        <option value="$PROJECT_DIR$/wechat/wechat.js" />
       </list>
     </option>
   </component>
@@ -236,15 +236,16 @@
       <workItem from="1527664682276" duration="5407000" />
       <workItem from="1527752814588" duration="20438000" />
       <workItem from="1527850259047" duration="51612000" />
-      <workItem from="1528028517432" duration="231000" />
+      <workItem from="1528028517432" duration="924000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="108222000" />
+    <option name="totallyTimeSpent" value="108840000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1017" y="0" width="1038" height="1119" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.13173653" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -252,7 +253,7 @@
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="7" show_stripe_button="false" />
       <window_info id="npm" order="2" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.47219414" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.47219414" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info id="Favorites" order="2" side_tool="true" />
@@ -584,7 +585,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/config/wechat.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="44">
+        <state relative-caret-position="22">
           <caret column="160" lean-forward="true" selection-start-column="160" selection-end-column="160" />
         </state>
       </provider>
@@ -612,15 +613,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/weixin.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="352">
-          <caret line="22" column="33" lean-forward="true" selection-start-line="22" selection-start-column="33" selection-end-line="22" selection-end-column="33" />
+        <state relative-caret-position="264">
+          <caret line="39" column="29" lean-forward="true" selection-start-line="39" selection-start-column="29" selection-end-line="39" selection-end-column="29" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/wechat/wechat.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="156">
-          <caret line="68" column="32" lean-forward="true" selection-start-line="68" selection-start-column="32" selection-end-line="68" selection-end-column="32" />
+        <state relative-caret-position="288">
+          <caret line="74" column="21" lean-forward="true" selection-start-line="74" selection-start-column="21" selection-end-line="74" selection-end-column="21" />
         </state>
       </provider>
     </entry>

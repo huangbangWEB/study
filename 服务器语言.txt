@@ -46,8 +46,8 @@ sudo vi /etc/iptables.up.rules
 -A INPUT -p icmp -m icmp --icmp-type 8 -j ACCEPT
 
 # mongodb connect
--A INPUT -s 127.0.0.1 -p tcp --destination-port 27080 -m state --state NEW,ESTABLISHED -j ACCEPT
--A OUTPUT -d 127.0.0.1 -p tcp --source-port 27080 -m state --state ESTABLISHED -j ACCEPT
+-A INPUT -s 127.0.0.1 -p tcp --destination-port 19999 -m state --state NEW,ESTABLISHED -j ACCEPT
+-A OUTPUT -d 127.0.0.1 -p tcp --source-port 19999 -m state --state ESTABLISHED -j ACCEPT
 
 ¼ÇÂ¼¾Ü¾øµÄÇëÇó
 -A INPUT -m limit --limit 5/min -j LOG --log-prefix "iptables denied:" --log-level 7
