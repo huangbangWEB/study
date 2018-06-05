@@ -15,16 +15,16 @@ module.exports={
 	  		loader:'style-loader!css-loader'
 	  	},
 	  	{
-	  		test:/.(png|jpg|gif|ttf)$/,
+	  		test:/\.(png|jpg|gif|ttf)$/,
 	  		loader:'url-loader?limit=10000'
 	  	},
 	  	{
-        test: /\.js$/,  // 将.js文件中的es6语法转成es5语法
+        test: /\.js$/,  // 利用babel-loader将.js文件中的es6语法转成es5语法
         loader:'babel-loader',
-        exclude:/node_modules/ 
+        exclude:/node_modules/ //排除此文件夹
       },
       {
-        test: /.vue$/,  // 解析 .vue 组件页面文件
+        test: /\.vue$/,  // 解析 .vue 组件页面文件
         loader:'vue-loader' //
       }
   	]
@@ -32,7 +32,7 @@ module.exports={
   
 	babel:{
 	    presets:['es2015'],  // 配置将es6语法转换成es5语法
-	    plugins:['transform-runtime']		//解决打包.vue文件不报错
+	    plugins:['transform-runtime']		//解决打包.vue文件不报错(不使用VUE文件开发则可删去)
 	},
 	
 	plugins:[

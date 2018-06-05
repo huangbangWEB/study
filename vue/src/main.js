@@ -26,9 +26,14 @@ Vue.use(mintui);
 
 // 5.0 注册mui的css样式
 import '../statics/mui/css/mui.css';
+import '../statics/mui/css/icons-extra.css';
 
 // 6.0 导入一个当前系统的全局基本样式
 import '../statics/css/site.css';
+
+// 7.0 将vue-resource在vue中绑定，自动在vue对象实例上注入一个$http对象就可以使用ajax方法了
+import vueResource from 'vue-resource';
+Vue.use(vueResource);
 
 // 3.0.2 导入路由规则对应的组件对象
 import home from './components/Home.vue';
@@ -50,8 +55,7 @@ var router = new vueRouter({
 // 3.0 利用Vue对象进行解析渲染
 new Vue({
 	el:'#app',
-	// 使用路由对象实例
-	router,
+	router,// 使用路由对象实例
 //	 render:function(create){return create(App)} //es5的写法
 	render:c=>c(App)  // es6的函数写法 =>：goes to
 });

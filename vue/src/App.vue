@@ -23,7 +23,7 @@
 				<span class="mui-icon mui-icon-contact">
 					<span class="mui-badge">9</span>
 				</span>
-				<span class="mui-tab-label">购物车</span>
+				<span class="mui-tab-label">购物车</span> 
 			</router-link>
 			<router-link class="mui-tab-item" to="/tabbar-with-map">
 				<span class="mui-icon mui-icon-gear"></span>
@@ -36,8 +36,8 @@
 <script>
 	import { Toast } from 'mint-ui';
 	// 负责导出 .vue这个组件对象(它本质上是一个Vue对象,所以Vue中该定义的元素都可以使用)
-	export default{  // es6的导出对象的写法
-		data:function(){  //等价于 es5的 data:function(){
+	export default{  // es6的导出对象的写法    ==  es5的 module.exports = 
+		data(){  //等价于 es5的 data：function（）{
 			return {
 				msg :'hello vuejs'
 			}
