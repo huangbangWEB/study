@@ -2,16 +2,19 @@
 	<div id="tmpl">
 		 <!-- 1.0 轮播图：mint-ui中的 swipe组件实现 -->
 		 <mt-swipe :auto="2000" id='swipe'>
- 
+
 			  <mt-swipe-item v-for='item in list'> <img :src="item"/></mt-swipe-item>
-			
+
 		</mt-swipe>
 		<!-- 2.0 利用MUI的9宫格样式实现导航区域 -->
 		<div class="mui-content">
 			<ul class="mui-table-view mui-grid-view mui-grid-9">
-	            <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><a href="#">
-	                    <span class="mui-icon mui-icon-home"></span>
-	                    <div class="mui-media-body">Home</div></a></li>
+	            <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+					<router-link to="/news/newslist">
+						<span class="mui-icon mui-icon-home"></span>
+	                    <div class="mui-media-body">新闻资讯</div>
+					</router-link>
+				</li>
 	            <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><a href="#">
 	                    <span class="mui-icon mui-icon-email"><span class="mui-badge">5</span></span>
 	                    <div class="mui-media-body">Email</div></a></li>
