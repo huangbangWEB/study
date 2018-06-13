@@ -16,6 +16,12 @@ import vueRouter from 'vue-router';
 // 3.0.1 将vueRouter对象绑定到Vue对象上
 Vue.use(vueRouter);
 
+// 3.0.2 导入路由规则对应的组件对象
+import home from './components/Home.vue';
+//import shopcar from './components/shopcar/car.vue';
+import newslist from './components/news/newslist.vue';
+import newsinfo from './components/news/newsinfo.vue';
+
 // 4.0 注册mint-ui
 // 导入mint-ui的css文件
 import 'mint-ui/lib/style.min.css';
@@ -35,11 +41,12 @@ import '../statics/css/site.css';
 import vueResource from 'vue-resource';
 Vue.use(vueResource);
 
-// 3.0.2 导入路由规则对应的组件对象
-import home from './components/Home.vue';
-//import shopcar from './components/shopcar/car.vue';
-import newslist from './components/news/newslist.vue';
-//import newsinfo from './components/news/newsinfo.vue';
+// 8.0 定义一个全局过滤器实现日期的格式化
+import moment from 'moment';
+Vue.filter('datefmt',function(input,fmtstring){
+//	使用momentjs这个日期格式化类库实现日的格式化功能
+    return moment(input).format(fmtstring);
+});
 
 // 3.0.2 定义路由规则
 var router = new vueRouter({
@@ -48,7 +55,7 @@ var router = new vueRouter({
 		{path:'/home',component:home},   //首页
 //		{path:'/shopcar',component:shopcar},  // 购物车
 		{path:'/news/newslist',component:newslist}, //新闻资讯列表页面
-//		{path:'/news/newsinfo/:id',component:newsinfo}  // 新闻资讯详情页面
+		{path:'/news/newsinfo/:id',component:newsinfo}  // 新闻资讯详情页面
 	]
 	});
 

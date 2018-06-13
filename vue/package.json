@@ -27,8 +27,11 @@
     "webpack-dev-server": "^1.16.5"
   },
   "dependencies": {
+    "koa-cors": "0.0.16",
+    "koa-route": "^3.2.0",
     "mint-ui": "^2.2.13",
     "moment": "^2.22.2",
+    "url": "^0.11.0",
     "vue": "^2.2.6",
     "vue-resource": "^1.5.1",
     "vue-router": "^2.3.1"

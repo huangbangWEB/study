@@ -3,25 +3,25 @@ module.exports={
     message:[{
         id:1,
         title:'我是标题1',
-        add_time:'2017-12-12T04:00:000Z',
+        add_time:'2017-12-12T04:00:00.000Z',
         zhaiyao:'我是摘要1',
         click:1,
-        img_url:'http://127.0.0.1:10000/'
+        img_url:'http://b.hb4.top/car.png'
     },
         {
             id:2,
             title:'我是标题2',
-            add_time:'2017-12-12T04:00:000Z',
+            add_time:'2017-12-12T04:00:00.000Z',
             zhaiyao:'我是摘要2',
             click:1,
-            img_url:'http://127.0.0.1:10000/'
+            img_url:'http://b.hb4.top/car.png'
         },
         {
             id:3,
             title:'我是标题3',
-            add_time:'2017-12-12T04:00:000Z',
+            add_time:'2017-12-12T04:00:00.000Z',
             zhaiyao:'我是摘要3',
             click:1,
-            img_url:'http://127.0.0.1:10000/'
+            img_url:'http://b.hb4.top/car.png'
         }]
 }

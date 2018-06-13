@@ -4,7 +4,12 @@
   "description": "",
   "main": "api.js",
   "dependencies": {
-    "koa": "^2.5.1"
+    "cors": "^2.8.4",
+    "koa": "^2.5.1",
+    "koa-cors": "0.0.16",
+    "koa-route": "^3.2.0",
+    "koa2-cors": "^2.0.5",
+    "path": "^0.12.7"
   },
   "devDependencies": {},
   "scripts": {

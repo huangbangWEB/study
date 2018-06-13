@@ -71,31 +71,31 @@
 	.mui-icon-location:before,
 	.mui-icon-search:before,
 	.mui-icon-phone:before{
-		content: '';
+		/*content: ''!important;*/
 		display: inline-block;
 		width: 50px;
 		height: 50px;
 		background-repeat: round;
 	}
 	
-	.mui-icon-home:before{		
-		background-image: url(../../statics/imgs/1.png);
-	}
+	/*.mui-icon-home:before{		*/
+		/*background-image: url(../../statics/imgs/1.png);*/
+	/*}*/
 
-	.mui-icon-email:before{		
-		background-image: url(../../statics/imgs/2.png);		
-	}
-	.mui-icon-chatbubble:before{		
-		background-image: url(../../statics/imgs/3.png);		
-	}
-	.mui-icon-location:before{		
-		background-image: url(../../statics/imgs/4.png);		
-	}
-	.mui-icon-search:before{		
-		background-image: url(../../statics/imgs/5.png);		
-	}
-	.mui-icon-phone:before{		
-		background-image: url(../../statics/imgs/6.png);		
-	}
+	/*.mui-icon-email:before{		*/
+		/*background-image: url(../../statics/imgs/2.png);		*/
+	/*}*/
+	/*.mui-icon-chatbubble:before{		*/
+		/*background-image: url(../../statics/imgs/3.png);		*/
+	/*}*/
+	/*.mui-icon-location:before{		*/
+		/*background-image: url(../../statics/imgs/4.png);		*/
+	/*}*/
+	/*.mui-icon-search:before{		*/
+		/*background-image: url(../../statics/imgs/5.png);		*/
+	/*}*/
+	/*.mui-icon-phone:before{		*/
+		/*background-image: url(../../statics/imgs/6.png);		*/
+	/*}*/
 	
 </style>
